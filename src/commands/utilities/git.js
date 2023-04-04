@@ -1,8 +1,8 @@
-const { EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 
-const eikthyrEmbed = new EmbedBuilder()
+const exampleEmbed = new EmbedBuilder()
   .setColor('Orange')
-  .setTitle('Guia geral do Boss Eikthyr')
+  .setTitle('Comandos do Git')
   .addFields(
     { name: '\u200B', value: '\u200B' },
     { name: '$ git init [nome-do-projeto]', value: 'Cria um novo repositório local com um nome especificado', inline: true },
@@ -23,8 +23,11 @@ const eikthyrEmbed = new EmbedBuilder()
   );
 
 module.exports = {
-  id: 'eikthyr',
+  data: new SlashCommandBuilder()
+    .setName('git')
+    .setDescription('Relembrar comandos do Git'),
+
   async execute(interaction) {
-    await interaction.reply({ embeds: [eikthyrEmbed] });
+    await interaction.reply({ embeds: [exampleEmbed] });
   },
 };

@@ -47,6 +47,6 @@ module.exports = {
     .setDescription('Acesse os guias dos Bosses'),
 
   async execute(interaction) {
-    await interaction.reply({ content: 'Selecione uma das techs abaixo:', components: [row] });
+    await interaction.reply({ content: 'Selecione uma das opções abaixo:', components: [row] });
   },
 };
