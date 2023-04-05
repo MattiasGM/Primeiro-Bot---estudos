@@ -1,5 +1,5 @@
 const {
-  SlashCommandBuilder, ActionRowBuilder, StringSelectMenuBuilder,
+  SlashCommandBuilder, ActionRowBuilder, StringSelectMenuBuilder, EmbedBuilder,
 } = require('discord.js');
 
 const row = new ActionRowBuilder()
@@ -41,12 +41,16 @@ const row = new ActionRowBuilder()
       ),
   );
 
+const embed = new EmbedBuilder()
+  .setColor(0x0099FF)
+  .setTitle('Selecione uma das opções:');
+
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('bosses')
     .setDescription('Acesse os guias dos Bosses'),
 
   async execute(interaction) {
-    await interaction.reply({ content: 'Selecione uma das opções abaixo:', components: [row] });
+    await interaction.reply({ embeds: [embed], components: [row], ephemeral: true });
   },
 };

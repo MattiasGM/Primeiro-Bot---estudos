@@ -28,6 +28,6 @@ module.exports = {
     .setDescription('Relembrar comandos do Git'),
 
   async execute(interaction) {
-    await interaction.reply({ embeds: [exampleEmbed] });
+    await interaction.reply({ embeds: [exampleEmbed], ephemeral: true });
   },
 };

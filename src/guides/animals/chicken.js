@@ -1,5 +1,5 @@
 module.exports = {
-  id: 'galinha',
+  id: 'chicken',
   async execute(interaction) {
     await interaction.reply('Como criar Galinhas');
   },

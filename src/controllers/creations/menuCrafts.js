@@ -1,6 +1,6 @@
 const path = require('node:path');
 
-const guide = 'bosses';
+const guide = 'crafts';
 
 module.exports = {
   async execute(interaction) {

@@ -1,5 +1,5 @@
 const {
-  SlashCommandBuilder, ActionRowBuilder, StringSelectMenuBuilder,
+  SlashCommandBuilder, ActionRowBuilder, StringSelectMenuBuilder, EmbedBuilder,
 } = require('discord.js');
 
 const row = new ActionRowBuilder()
@@ -11,10 +11,14 @@ const row = new ActionRowBuilder()
         {
           label: 'Galinha',
           description: 'Acessar guia das galinhas',
-          value: 'galinha',
+          value: 'chicken',
         },
       ),
   );
+
+const embed = new EmbedBuilder()
+  .setColor(0x0099FF)
+  .setTitle('Selecione uma das opções:');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -22,6 +26,6 @@ module.exports = {
     .setDescription('Acesse os guias dos Animais'),
 
   async execute(interaction) {
-    await interaction.reply({ content: 'Selecione uma das opções abaixo:', components: [row] });
+    await interaction.reply({ embeds: [embed], components: [row], ephemeral: true });
   },
 };
