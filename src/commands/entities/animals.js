@@ -5,13 +5,18 @@ const {
 const row = new ActionRowBuilder()
   .addComponents(
     new StringSelectMenuBuilder()
-      .setCustomId('select')
+      .setCustomId('animals')
       .setPlaceholder('Nenhum Animal selecionado')
       .addOptions(
         {
           label: 'Galinha',
           description: 'Acessar guia das galinhas',
           value: 'chicken',
+        },
+        {
+          label: 'Javali',
+          description: 'Acessar guia das galinhas',
+          value: 'boar',
         },
       ),
   );

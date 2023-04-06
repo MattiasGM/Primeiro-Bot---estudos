@@ -5,7 +5,7 @@ const {
 const row = new ActionRowBuilder()
   .addComponents(
     new StringSelectMenuBuilder()
-      .setCustomId('select')
+      .setCustomId('bosses')
       .setPlaceholder('Nenhum Boss selecionado')
       .addOptions(
         {

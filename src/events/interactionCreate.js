@@ -5,25 +5,20 @@ const path = require('node:path');
 async function controllersMenu(interaction) {
   if (interaction.isStringSelectMenu()) {
     const foldersPath = path.join(__dirname, '../', 'controllers');
-    const controllersFolders = fs.readdirSync(foldersPath);
+    const controllersFiles = fs.readdirSync(foldersPath).filter((file) => file.endsWith('.js'));
 
-    for (const folders of controllersFolders) {
-      const controllersPath = path.join(foldersPath, folders);
-      const controllersFiles = fs.readdirSync(controllersPath).filter((file) => file.endsWith('.js'));
-
-      for (const file of controllersFiles) {
-        const filePath = path.join(controllersPath, file);
-        const controllers = require(filePath);
-        if ('execute' in controllers) {
-          try {
-            controllers.execute(interaction);
-          } catch (error) {
-            console.error(`Error executing ${interaction.commandName}`);
-            console.error(error);
-          }
-        } else {
-          console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
+    for (const file of controllersFiles) {
+      const filePath = path.join(foldersPath, file);
+      const controllers = require(filePath);
+      if ('execute' in controllers) {
+        try {
+          controllers.execute(interaction);
+        } catch (error) {
+          console.error(`Error executing ${interaction.commandName}`);
+          console.error(error);
         }
+      } else {
+        console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property path interaction.`);
       }
     }
   }
