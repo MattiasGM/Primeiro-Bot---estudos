@@ -1,11 +1,14 @@
-const { SlashCommandBuilder } = require('discord.js');
+const {
+  SlashCommandBuilder,
+} = require('discord.js');
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('ping')
-    .setDescription("Responde com 'Pong!"),
+    .setDescription('Verificar lantencia!'),
 
   async execute(interaction) {
-    await interaction.reply({ content: 'Pong!', ephemeral: true });
+    const sent = await interaction.reply({ content: 'Pinging...', fetchReply: true, ephemeral: true });
+    interaction.editReply({ content: `Latencia: ${sent.createdTimestamp - interaction.createdTimestamp}ms`, ephemeral: true });
   },
 };

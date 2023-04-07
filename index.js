@@ -42,7 +42,14 @@ for (const file of eventFiles) {
   if (event.once) {
     client.once(event.name, (...args) => event.execute(...args));
   } else {
-    client.on(event.name, (...args) => event.execute(...args));
+    client.on(event.name, (...args) => {
+      const channelRequire = require('./src/commands/fun/getChannelStandart');
+      const channelId = channelRequire.channel;
+      console.log(channelId);
+
+      const channel = client.channels.cache.get(channelId);
+      event.execute(...args, channel);
+    });
   }
 }
 
