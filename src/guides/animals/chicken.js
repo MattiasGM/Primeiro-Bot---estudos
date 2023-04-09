@@ -9,7 +9,7 @@ const thumb = new AttachmentBuilder(thumbValheim);
 const image = new AttachmentBuilder(imagePath);
 
 const exampleEmbed = new EmbedBuilder()
-  .setColor(0x00ffff)
+  .setColor(0xbf9000)
   .setTitle('Galinha')
   .setThumbnail('attachment://thumbValheim.png')
   .setAuthor({ name: 'gameMe', url: 'https://pt.gameme.eu/como-obter-galinhas-e-ovos-de-escotilha-valheim/' })

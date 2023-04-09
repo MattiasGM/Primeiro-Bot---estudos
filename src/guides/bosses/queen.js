@@ -9,7 +9,7 @@ const thumb = new AttachmentBuilder(thumbValheim);
 const image = new AttachmentBuilder(imagePath);
 
 const exampleEmbed = new EmbedBuilder()
-  .setColor(0x00ffff)
+  .setColor(0x000000)
   .setTitle('Queen')
   .setThumbnail('attachment://thumbValheim.png')
   .setAuthor({ name: 'IGN', url: 'https://www.ign.com/wikis/valheim/Bosses' })

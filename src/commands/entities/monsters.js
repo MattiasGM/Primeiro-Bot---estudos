@@ -38,6 +38,16 @@ const row = new ActionRowBuilder()
           description: 'Acessar guia do monstro Esqueleto (Floresta Negra/ Pântano/ Câmaras Fúnebre)',
           value: 'skeleton',
         },
+        {
+          label: 'Restos rançosos',
+          description: 'Acessar guia do monstro Restos rançosos (Câmaras Fúnebre)',
+          value: 'rancidRemains',
+        },
+        {
+          label: 'Fantasma',
+          description: 'Acessar guia do monstro Fantasma (Câmaras Fúnebre)',
+          value: 'ghost',
+        },
       ),
   );
 

@@ -9,7 +9,7 @@ const thumb = new AttachmentBuilder(thumbValheim);
 const image = new AttachmentBuilder(imagePath);
 
 const exampleEmbed = new EmbedBuilder()
-  .setColor(0x00ffff)
+  .setColor(0x783f04)
   .setTitle('Lox')
   .setThumbnail('attachment://thumbValheim.png')
   .setAuthor({ name: 'Valheim Wiki', url: 'https://valheim.fandom.com/pt-br/wiki/Javali' })
