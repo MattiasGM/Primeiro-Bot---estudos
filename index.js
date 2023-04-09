@@ -43,12 +43,7 @@ for (const file of eventFiles) {
     client.once(event.name, (...args) => event.execute(...args));
   } else {
     client.on(event.name, (...args) => {
-      const channelRequire = require('./src/commands/fun/getChannelStandart');
-      const channelId = channelRequire.channel;
-      console.log(channelId);
-
-      const channel = client.channels.cache.get(channelId);
-      event.execute(...args, channel);
+      event.execute(...args);
     });
   }
 }
