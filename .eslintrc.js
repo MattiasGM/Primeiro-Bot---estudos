@@ -17,6 +17,6 @@ module.exports = {
     'no-console': 'off',
     'no-restricted-syntax': 'off',
     'import/no-dynamic-require': 'off',
-    'global-require': 'off'
+    'global-require': 'off',
   },
 };

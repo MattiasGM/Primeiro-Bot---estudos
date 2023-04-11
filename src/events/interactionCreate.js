@@ -24,7 +24,7 @@ async function controllersMenu(interaction) {
   }
 }
 
-async function executeCommands(interaction) {
+async function executeCommands(interaction, openai) {
   if (interaction.isChatInputCommand()) {
     const command = interaction.client.commands.get(interaction.commandName);
 
@@ -34,7 +34,7 @@ async function executeCommands(interaction) {
     }
 
     try {
-      await command.execute(interaction);
+      await command.execute(interaction, openai);
     } catch (error) {
       console.error(`Error executing ${interaction.commandName}`);
       console.error(error);
@@ -42,14 +42,14 @@ async function executeCommands(interaction) {
   }
 }
 
-async function app(interaction) {
+async function app(interaction, openai) {
   controllersMenu(interaction);
-  executeCommands(interaction);
+  executeCommands(interaction, openai);
 }
 
 module.exports = {
   name: Events.InteractionCreate,
-  async execute(interaction) {
-    app(interaction);
+  async execute(interaction, openai) {
+    app(interaction, openai);
   },
 };
