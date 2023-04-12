@@ -7,7 +7,7 @@ const app = async (openai, interaction) => {
     model: 'gpt-3.5-turbo',
     messages: [{ role: 'user', content: question }],
     temperature: 0.8,
-    max_tokens: 2048,
+    max_tokens: 1500,
   });
 
   const message = response.data.choices[0].message.content;

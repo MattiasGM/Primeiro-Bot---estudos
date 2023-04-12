@@ -2,6 +2,20 @@ const { Events } = require('discord.js');
 const fs = require('node:fs');
 const path = require('node:path');
 
+async function buttonsInteraction(interaction) {
+  if (interaction.isButton()) {
+    const filter = (i) => i.customId === 'next';
+
+    const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000 });
+
+    collector.on('collect', async (i) => {
+      await i.update({ content: 'A button was clicked!', components: [] });
+    });
+
+    collector.on('end', (collected) => console.log(`Collected ${collected.size} items`));
+  }
+}
+
 async function controllersMenu(interaction) {
   if (interaction.isStringSelectMenu()) {
     const foldersPath = path.join(__dirname, '../', 'controllers');
@@ -43,6 +57,7 @@ async function executeCommands(interaction, openai) {
 }
 
 async function app(interaction, openai) {
+  buttonsInteraction(interaction);
   controllersMenu(interaction);
   executeCommands(interaction, openai);
 }
