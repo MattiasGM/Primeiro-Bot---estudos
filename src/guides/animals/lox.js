@@ -24,7 +24,7 @@ const exampleEmbed = new EmbedBuilder()
     { name: '\u200B', value: '\u200B' },
     { name: 'Domesticação:', value: 'Atrair o Lox para um cercado e colocar comida para ele, esperar até que seja domado.', inline: true },
     { name: 'Alimentação:', value: 'Frutas: *Nuvineza*, Colheitas: *Cevada ou Linho*.', inline: true },
-    { name: 'Reprodução:', value: 'Não implementado o sistema de reprodução até o momento.', inline: true },
+    { name: 'Reprodução:', value: 'Precisa de no mínimo 2 Lox domesticados, basta alimentar ambos jogando a comida no chão (pode jogar a comida em pack).', inline: true },
     { name: 'Montaria:', value: 'Após domesticado é possível montar no lox com uma Sela de Lox (fabricada em uma Bancada de Trabalho lv:1+).' },
     { name: '\u200B', value: '\u200B' },
     { name: 'Dicas:', value: 'Recomenda-se construir uma cerca de pedra ao domar Lox, pois eles podem facilmente quebrar estruturas de madeira.' },
