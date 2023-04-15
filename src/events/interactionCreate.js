@@ -2,17 +2,25 @@ const { Events } = require('discord.js');
 const fs = require('node:fs');
 const path = require('node:path');
 
-async function buttonsInteraction(interaction) {
+async function buttonsInteraction(interaction, openai) {
   if (interaction.isButton()) {
-    const filter = (i) => i.customId === 'next';
+    const { customId } = interaction;
 
-    const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000 });
+    const command = interaction.client.commands.get(customId);
 
-    collector.on('collect', async (i) => {
-      await i.update({ content: 'A button was clicked!', components: [] });
-    });
+    if (!command) {
+      console.error(`No command matching ${customId} was found.`);
+      return;
+    }
 
-    collector.on('end', (collected) => console.log(`Collected ${collected.size} items`));
+    try {
+      const isVariant = true;
+      const { variantDesc } = require('../commands/utilities/imagine');
+      await command.execute(interaction, openai, isVariant, variantDesc);
+    } catch (error) {
+      console.error(`Error executing ${customId}`);
+      console.error(error);
+    }
   }
 }
 
@@ -57,7 +65,7 @@ async function executeCommands(interaction, openai) {
 }
 
 async function app(interaction, openai) {
-  buttonsInteraction(interaction);
+  buttonsInteraction(interaction, openai);
   controllersMenu(interaction);
   executeCommands(interaction, openai);
 }
