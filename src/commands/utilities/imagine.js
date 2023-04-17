@@ -16,57 +16,62 @@ class Main {
   }
 
   async app() {
-    if (this.isVariant) {
-      this.isVariant = false;
-    } else {
-      imageDescription = this.interaction.options.getString('imaginedesc');
-      imageNumber = this.interaction.options.getNumber('number');
-    }
-
-    if (imageNumber > 4) imageNumber = 4;
-    if (!imageNumber || imageNumber === 0) imageNumber = 1;
-
-    const response = await this.openai.createImage({
-      prompt: imageDescription,
-      n: imageNumber,
-      size: '1024x1024',
-    });
-
-    const images = response.data.data;
-
-    for (const index in images) {
-      if (Object.prototype.hasOwnProperty.call(images, index)) {
-        const imageUrl = images[index].url;
-
-        const embed = new EmbedBuilder()
-          .setImage(imageUrl);
-
-        embeds.push(embed);
+    try {
+      if (this.isVariant) {
+        this.isVariant = false;
+      } else {
+        imageDescription = this.interaction.options.getString('imaginedesc');
+        imageNumber = this.interaction.options.getNumber('number');
       }
+
+      if (imageNumber > 4) imageNumber = 4;
+      if (!imageNumber || imageNumber === 0) imageNumber = 1;
+
+      const response = await this.openai.createImage({
+        prompt: imageDescription,
+        n: imageNumber,
+        size: '1024x1024',
+      });
+
+      const images = response.data.data;
+
+      for (const index in images) {
+        if (Object.prototype.hasOwnProperty.call(images, index)) {
+          const imageUrl = images[index].url;
+
+          const embed = new EmbedBuilder()
+            .setImage(imageUrl);
+
+          embeds.push(embed);
+        }
+      }
+
+      const questionButton = new ButtonBuilder()
+        .setCustomId('disabled')
+        .setLabel('Deseja criar outra(s) imagem(ns)? ')
+        .setStyle(ButtonStyle.Secondary)
+        .setDisabled(true);
+
+      const imageVariant = new ButtonBuilder()
+        .setCustomId('imagine')
+        .setLabel('Gerar')
+        .setStyle(ButtonStyle.Primary);
+
+      const row = new ActionRowBuilder()
+        .addComponents(questionButton, imageVariant);
+
+      components.push(row);
+
+      await this.interaction.editReply({
+        content: '', embeds, components, ephemeral: true,
+      });
+
+      embeds = [];
+      components = [];
+    } catch (error) {
+      console.log(error);
+      if (error.status === 429) this.interaction.editReply({ content: 'Calma meu patrão, a cota já foi batida, espera um cadim aí :)', ephemeral: true });
     }
-
-    const questionButton = new ButtonBuilder()
-      .setCustomId('disabled')
-      .setLabel('Deseja criar outra(s) imagem(ns)? ')
-      .setStyle(ButtonStyle.Secondary)
-      .setDisabled(true);
-
-    const imageVariant = new ButtonBuilder()
-      .setCustomId('imagine')
-      .setLabel('Gerar')
-      .setStyle(ButtonStyle.Primary);
-
-    const row = new ActionRowBuilder()
-      .addComponents(questionButton, imageVariant);
-
-    components.push(row);
-
-    await this.interaction.editReply({
-      content: '', embeds, components, ephemeral: true,
-    });
-
-    embeds = [];
-    components = [];
   }
 }
 
