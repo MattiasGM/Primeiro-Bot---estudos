@@ -15,7 +15,7 @@ const row = new ActionRowBuilder()
         },
         {
           label: 'Elder',
-          description: 'Acessar guia do boss Eikthyr',
+          description: 'Acessar guia do boss Elder',
           value: 'elder',
         },
         {
