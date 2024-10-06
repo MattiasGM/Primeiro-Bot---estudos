@@ -1,2 +1,3 @@
-# Primeiro-Bot---estudos
+# Primeiro-Bot-
  Bot base para outros projetos
+--Não finalizado--
